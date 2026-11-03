@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dashboard KPI IT PAC 2026 — Update September</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef2f7;--card:#fff;--ink:#0f1f38;--mut:#5b6b85;--line:#dbe3ee;--ok:#0f9d76;--warn:#e08a00;--bad:#e5484d;--acc:#2f6bff;--acc2:#12b5cb;--hero:linear-gradient(135deg,#0f1f38,#1d3d80)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1220;--card:#121d33;--ink:#e8eefb;--mut:#8ea0bf;--line:#22314f;--ok:#2fd3a3;--warn:#ffb020;--bad:#ff6b70;--acc:#5b8dff;--acc2:#28d0e4;--hero:linear-gradient(135deg,#132447,#1d3d80)}}
+:root[data-theme="dark"]{--bg:#0a1220;--card:#121d33;--ink:#e8eefb;--mut:#8ea0bf;--line:#22314f;--ok:#2fd3a3;--warn:#ffb020;--bad:#ff6b70;--acc:#5b8dff;--acc2:#28d0e4;--hero:linear-gradient(135deg,#132447,#1d3d80)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 'Plus Jakarta Sans',system-ui,sans-serif}
+.w{max-width:1240px;margin:0 auto;padding:16px}
+.hero{background:var(--hero);color:#fff;border-radius:20px;padding:24px 26px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.hero h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.02em}.hero p{margin:4px 0 0;opacity:.75}
+.btn{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;font:inherit}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
+.k{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;border-top:4px solid var(--c,var(--acc))}
+.k b{display:block;font-size:30px;font-weight:800;letter-spacing:-.03em}.k span{color:var(--mut);font-size:12px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0 12px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:6px 14px;cursor:pointer;font:inherit}
+.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.chip:focus-visible,.btn:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+.g{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.c h3{margin:0 0 2px;font-size:15px;font-weight:800}.c small{color:var(--mut);display:block;margin-bottom:8px}
+.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
+@media(max-width:860px){.g>*{grid-column:span 12}}
+.cv{position:relative;height:290px}.gauge{position:relative;height:190px}
+.gt{position:absolute;left:0;right:0;bottom:6px;text-align:center}.gt b{font-size:38px;font-weight:800}
+.hm{overflow-x:auto}.hm table{border-collapse:separate;border-spacing:3px;width:100%;min-width:560px}
+.hm th{font-weight:600;font-size:12px;color:var(--mut)}.hm td.n{text-align:left;cursor:pointer;padding:2px 6px;white-space:nowrap}
+.hm td.n:hover,.hm tr.sel td.n{color:var(--acc);font-weight:800}
+.hm td.x{height:28px;border-radius:7px;text-align:center;font-size:11px;font-weight:800;color:#fff;transition:transform .15s}
+.hm td.x:hover{transform:scale(1.18)}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.inf{display:flex;gap:16px;flex-wrap:wrap;margin:4px 0 8px}.inf div{background:var(--bg);border-radius:10px;padding:6px 12px}.inf b{display:block}
+.il{max-height:150px;overflow:auto;margin-top:8px;font-size:12px}.il div{padding:5px 0;border-top:1px solid var(--line)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.tb{width:100%;border-collapse:collapse;font-size:13px}.tb th{text-align:left;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:6px 8px;border-bottom:2px solid var(--line)}
+.tb td{padding:8px;border-bottom:1px solid var(--line);vertical-align:middle}.tb tr.r{cursor:pointer}.tb tr.r:hover td,.tb tr.sel td{background:color-mix(in srgb,var(--acc) 10%,transparent)}
+.pb{height:8px;border-radius:99px;background:var(--line);min-width:80px;overflow:hidden}.pb i{display:block;height:100%;border-radius:99px}
+.tw{overflow-x:auto}.tw .tb{min-width:640px}
+
+@keyframes rise{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes popin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}}
+.hero{background-size:220% 220%;animation:flow 16s ease-in-out infinite}
+.k{animation:rise .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--n,0)*90ms);transition:transform .25s,box-shadow .25s}
+.k:hover{transform:translateY(-4px);box-shadow:0 14px 30px #0f1f3829}
+.js .c{opacity:0;transform:translateY(22px)}
+.js .c.in{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .c:not(.in) .hm td.x{opacity:0}
+.js .c.in .hm td.x{animation:popin .55s cubic-bezier(.3,1.5,.5,1) backwards;animation-delay:var(--d,0ms)}
+.js .c.in .pb i{transform-origin:left;animation:grow 1.2s cubic-bezier(.2,.8,.2,1) backwards}
+@media(prefers-reduced-motion:reduce){.hero,.k{animation:none}.js .c{opacity:1;transform:none}}
+
+/* ===== v2: lebih hidup, mulus, warna-warni ===== */
+.hero{animation:none!important;background:#1d2f66!important;position:relative;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;top:0;bottom:0;left:0;width:400%;z-index:-1;background:linear-gradient(90deg,#1d3d80,#6a3df0,#e0398a,#f2603c,#12b5cb,#1d3d80,#6a3df0,#e0398a,#f2603c,#12b5cb,#1d3d80);animation:slide 30s linear infinite;will-change:transform}
+@keyframes slide{to{transform:translateX(-50%)}}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(640px 420px at 6% 8%,#5b8dff26,transparent 70%),radial-gradient(520px 420px at 94% 22%,#ff5c8a22,transparent 70%),radial-gradient(640px 520px at 68% 98%,#2fd3a324,transparent 70%),radial-gradient(420px 360px at 20% 70%,#ffb02020,transparent 70%)}
+.c{position:relative}
+.c::before{content:"";position:absolute;left:18px;right:18px;top:0;height:4px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,#5b8dff,#a066ff,#ff5c8a,#ffb020,#2fd3a3,#5b8dff);background-size:200% 100%;animation:flow 9s linear infinite}
+.k{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 16%,var(--card)),var(--card) 70%)}
+.k b{color:var(--c)}
+.chip[aria-pressed=true]{background:linear-gradient(135deg,#5b8dff,#a066ff);border-color:transparent}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.hm td.x{box-shadow:0 2px 6px #0000001f}
+@media(prefers-reduced-motion:reduce){.hero::before,.c::before{animation:none}}
+.gt b{background:linear-gradient(90deg,#5b8dff,#a066ff,#ff5c8a,#ffb020,#2fd3a3,#5b8dff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent;animation:flow 6s linear infinite}
+@media(prefers-reduced-motion:reduce){.gt b{animation:none}}
+.pb i{position:relative;overflow:hidden}
+.pb i::before{content:"";position:absolute;inset:0;background:linear-gradient(45deg,#ffffff30 25%,transparent 25% 50%,#ffffff30 50% 75%,transparent 75%);background-size:16px 16px;animation:stripes .8s linear infinite}
+.pb i::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(90deg,transparent,#ffffff99,transparent);animation:shine 2.4s ease-in-out infinite}
+.tb tr:nth-child(odd) .pb i::after{animation-delay:-1.2s}
+@keyframes stripes{to{background-position:16px 0}}
+@keyframes shine{from{transform:translateX(-120%)}to{transform:translateX(320%)}}
+.live{float:right;font-size:12px;font-weight:700;color:var(--mut);display:flex;align-items:center;gap:6px}
+.live i{width:8px;height:8px;border-radius:50%;background:#2fd3a3;animation:ping 1.6s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 #2fd3a3aa}70%{box-shadow:0 0 0 9px #2fd3a300}100%{box-shadow:0 0 0 0 #2fd3a300}}
+.tb tr.scan td{background-image:linear-gradient(90deg,#5b8dff26,#ff5c8a14,transparent)}
+.tb td.nf{animation:nflash 1s ease-out}
+@keyframes nflash{0%{color:#5b8dff;text-shadow:0 0 10px #5b8dff99}100%{text-shadow:none}}
+@media(prefers-reduced-motion:reduce){.pb i::before,.pb i::after,.live i{animation:none}}
+.js .c.in .hm td.x{animation:wavecell 9s ease-in-out var(--w,0ms) infinite,popin .55s cubic-bezier(.3,1.5,.5,1) var(--d,0ms) backwards}
+@keyframes wavecell{0%,100%{scale:1;filter:brightness(1)}50%{scale:1.08;filter:brightness(1.3) saturate(1.15)}}
+.js .c.in .hm td.x.fl{animation:flipc 1.6s ease-in-out}
+@keyframes flipc{0%{transform:rotateX(0)}50%{transform:rotateX(90deg);filter:brightness(1.7)}100%{transform:rotateX(0)}}
+.hm td.x.cs{box-shadow:0 0 0 2px #ffffffb0,0 0 14px #ffffff66;position:relative;z-index:1}
+.hm th{transition:color .6s,transform .6s}
+.hm td.x{transition:transform .15s,box-shadow .7s ease}
+.hm th.cs{color:#fff;transform:scale(1.25)}
+@media(prefers-reduced-motion:reduce){.js .c.in .hm td.x{animation:none}}
+</style></head><body><div class="w">
+<div class="hero"><div><h1>Dashboard KPI IT PAC 2026</h1><p>Update September 2026 · gap analysis pra-raker · Januari–September 2026 · klik grafik atau baris KPI untuk melihat detail</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="rp">▶ Putar ulang animasi</button><button class="btn" id="th">Ganti tema</button></div></div>
+<div class="kp" id="kp"></div>
+<div class="bar" id="fl"></div>
+<div class="g">
+<div class="c s4"><h3>Overall achievement</h3><small>Bulan-KPI tercapai dari total 99</small><div class="gauge"><canvas id="ga"></canvas><div class="gt"><b id="gv"></b></div></div><div class="il" id="op"></div></div>
+<div class="c s8"><h3>Achievement per KPI</h3><small>Warna = identitas KPI (status ada di tooltip & scorecard); klik batang untuk memilih KPI</small><div class="cv"><canvas id="rk"></canvas></div></div>
+<div class="c s12"><h3 id="dt"></h3><small id="ds"></small><div class="inf" id="di"></div><div class="cv" style="height:260px"><canvas id="dl"></canvas></div></div>
+<div class="c s7"><h3>Heatmap achievement bulanan</h3><small>Hijau = tercapai, merah = jauh di bawah target. Arahkan kursor untuk nilai.</small><div class="hm" id="hm"></div></div>
+<div class="c s5"><h3>Radar achievement</h3><small>Semakin ke tepi = semakin dekat target 100%</small><div class="cv"><canvas id="rd"></canvas></div></div>
+<div class="c s6"><h3>Pareto bulan tidak tercapai</h3><small>Batang = jumlah bulan gagal, garis = kumulatif</small><div class="cv"><canvas id="pa"></canvas></div></div>
+<div class="c s6"><h3>Peta risiko prioritas 2027</h3><small>Sumbu X frekuensi gagal, Y gap rata-rata, ukuran = skor prioritas</small><div class="cv"><canvas id="pb"></canvas></div></div>
+<div class="c s6"><h3>Availability bulanan vs target</h3><small>Rata-rata KPI berbasis persen, tanpa Project DB (penyelesaian proyek, bukan availability)</small><div class="cv"><canvas id="av"></canvas></div></div>
+<div class="c s6"><h3>IT Downtime per bulan vs target</h3><small>Hijau = dalam target, merah = melebihi (jam)</small><div class="cv"><canvas id="dw"></canvas></div></div>
+<div class="c s12"><h3>Jumlah KPI tercapai per bulan</h3><small>Dari 11 KPI</small><div class="cv" style="height:230px"><canvas id="kb"></canvas></div></div>
+<div class="c s12"><h3>Scorecard KPI</h3><small>Target vs realisasi rata-rata Jan–Sep. Klik baris untuk melihat grafik detail.</small><div class="tw" id="sc"></div></div>
+<div class="c s12"><h3>Rekomendasi tindakan 2027</h3><small>Urut skor prioritas (0–100): 40% keparahan gap, 30% frekuensi gagal, 20% tren, 10% volatilitas</small><div class="tw" id="rc"></div></div>
+<div class="c s12"><h3>Insiden IT Jan–Sep</h3><small id="is"></small><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px"><div class="cv" style="height:250px"><canvas id="ic"></canvas></div><div class="cv" style="height:250px"><canvas id="im"></canvas></div></div></div>
+</div></div>
+<script>
+const D={"M": ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep"], "kpi": [{"n": "System / Server Uptime", "u": "%", "t": 0.995, "v": [0.9962, 0.9891, 0.9971, 0.9935, 0.9908, 0.9955, 0.9968, 0.9962, 0.9951]}, {"n": "Network Availability", "u": "%", "t": 0.99, "v": [0.9912, 0.9884, 0.9931, 0.9842, 0.9905, 0.982, 0.9928, 0.99, 0.93]}, {"n": "IT Ticket SLA Compliance", "u": "%", "t": 0.95, "v": [0.91, 0.88, 0.93, 0.9, 0.94, 0.92, 0.95, 0.93, 0.95]}, {"n": "Data Availability / Accessibility", "u": "%", "t": 0.99, "v": [0.99, 0.979, 0.988, 0.986, 0.982, 0.991, 0.99, 0.987, 0.991]}, {"n": "Dashboard KPI Availability", "u": "%", "t": 0.98, "v": [0.88, 0.91, 0.93, 0.9, 0.94, 0.95, 0.96, 0.94, 0.98]}, {"n": "Backup Success Rate", "u": "%", "t": 0.98, "v": [0.98, 0.98, 0.98, 0.98, 0.94, 0.98, 0.97, 0.93, 0.97]}, {"n": "Cybersecurity / Endpoint Compliance", "u": "%", "t": 0.95, "v": [0.84, 0.86, 0.89, 0.88, 0.82, 0.9, 0.92, 0.93, 0.944]}, {"n": "Project Database Completion", "u": "%", "t": 1, "v": [0.05, 0.12, 0.18, 0.3, 0.38, 0.45, 0.58, 0.66, 0.76]}, {"n": "Accounting System Availability (Easy System)", "u": "%", "t": 0.99, "v": [0.991, 0.986, 0.992, 0.988, 0.983, 0.99, 0.993, 0.989, 0.999]}, {"n": "Document Management Availability", "u": "%", "t": 0.98, "v": [0.96, 0.94, 0.97, 0.95, 0.97, 0.98, 0.98, 0.96, 0.98]}, {"n": "IT Downtime", "u": "Jam", "t": 4, "v": [2.8, 7.9, 2.1, 5.8, 6.7, 2.3, 2.3, 5.8, 72]}], "pri": [{"k": "IT Downtime", "s": 86.7, "c": "P1", "f": 0.5556, "g": 0.2735, "tr": "▼ Memburuk", "fd": "Gap ke target besar", "rec": "Program khusus + owner + review mingguan"}, {"k": "Project DB", "s": 80, "c": "P1", "f": 1, "g": 0.6133, "tr": "▲ Membaik", "fd": "Gap ke target besar", "rec": "Program khusus + owner + review mingguan"}, {"k": "Cybersecurity", "s": 56.4, "c": "P2", "f": 1, "g": 0.0662, "tr": "▲ Membaik", "fd": "Sering gagal target", "rec": "Rencana perbaikan terjadwal + review bulanan"}, {"k": "Dashboard KPI", "s": 46.0, "c": "P2", "f": 0.8889, "g": 0.0488, "tr": "▲ Membaik", "fd": "Sering gagal target", "rec": "Rencana perbaikan terjadwal + review bulanan"}, {"k": "Ticket SLA", "s": 35.8, "c": "P2", "f": 0.7778, "g": 0.0281, "tr": "▲ Membaik", "fd": "Sering gagal target", "rec": "Rencana perbaikan terjadwal + review bulanan"}, {"k": "Network", "s": 27.8, "c": "P3", "f": 0.4444, "g": 0.0085, "tr": "▼ Memburuk", "fd": "Sering gagal target", "rec": "Monitoring proaktif & tindakan preventif"}, {"k": "Backup", "s": 27.7, "c": "P3", "f": 0.4444, "g": 0.0125, "tr": "▼ Memburuk", "fd": "Sering gagal target", "rec": "Monitoring proaktif & tindakan preventif"}, {"k": "Doc Mgmt", "s": 26.8, "c": "P3", "f": 0.6667, "g": 0.0147, "tr": "▲ Membaik", "fd": "Sering gagal target", "rec": "Monitoring proaktif & tindakan preventif"}, {"k": "Data Avail.", "s": 18.4, "c": "P4", "f": 0.5556, "g": 0.0031, "tr": "► Stagnan", "fd": "Sering gagal target", "rec": "Pertahankan; audit berkala"}, {"k": "Accounting", "s": 14.7, "c": "P4", "f": 0.4444, "g": 0.0016, "tr": "► Stagnan", "fd": "Sering gagal target", "rec": "Pertahankan; audit berkala"}, {"k": "Uptime", "s": 10.9, "c": "P4", "f": 0.3333, "g": 0.0013, "tr": "► Stagnan", "fd": "Sering gagal target", "rec": "Pertahankan; audit berkala"}], "inc": [{"m": "Jan", "c": "Network", "i": "Switch access HO intermittent", "h": 1.6, "p": "IT Support", "s": "Closed", "rc": "Port negotiation & patch cable rusak"}, {"m": "Jan", "c": "Server", "i": "File server lambat, CPU 100%", "h": 1.2, "p": "IT Support", "s": "Closed", "rc": "Overkapasitas Storage"}, {"m": "Feb", "c": "Power / Server", "i": "PLN padam (listrik mati)", "h": 5.5, "p": "IT Support Lead", "s": "Closed", "rc": "Tidak ada backup ganset"}, {"m": "Feb", "c": "Backup", "i": "Backup DB gagal 3 hari berturut-turut", "h": 1.6, "p": "IT Support", "s": "Closed", "rc": "Kapasitas repository penuh"}, {"m": "Feb", "c": "Document Mgmt", "i": "Salah permission share folder HRD (open access google drive)", "h": 0.8, "p": "IT Support Lead", "s": "Closed", "rc": "Human error saat share link roles editor or view"}, {"m": "Mar", "c": "Application", "i": "Easy Accounting modul jobcosting error saat posting", "h": 1.4, "p": "IT Support", "s": "Closed", "rc": "Bug versi patch vendor"}, {"m": "Mar", "c": "Endpoint", "i": "2 laptop HO belum ter-patch", "h": 0.7, "p": "IT Support", "s": "Closed", "rc": "laptop jarang online saat window patch"}, {"m": "Apr", "c": "Network", "i": "Fiber ISP putus (pekerjaan jalan)", "h": 1.6, "p": "IT Support Lead", "s": "Closed", "rc": "Single link ISP, tanpa redundansi"}, {"m": "Apr", "c": "Server", "i": "Service aplikasi hang", "h": 1.2, "p": "IT Support", "s": "Closed", "rc": "Memory leak service"}, {"m": "Apr", "c": "CCTV WS", "i": "Tidak bisa record live onsite & online", "h": 3, "p": "IT Support", "s": "Closed", "rc": "Overkapasitas Storage"}, {"m": "Mei", "c": "Storage", "i": "Disk array degraded, share read-only", "h": 3.5, "p": "IT Support Lead", "s": "Closed", "rc": "1 disk failed, hot spare tidak aktif"}, {"m": "Mei", "c": "Security", "i": "2 Sales tidak  menerima email dari customer", "h": 2.2, "p": "IT Support Lead", "s": "Closed", "rc": "Doman email server tidak terbaca oleh firewall customer"}, {"m": "Mei", "c": "Endpoint", "i": "5 laptop baru belum enroll AV & patch", "h": 1, "p": "IT Support", "s": "Closed", "rc": "Handover aset tanpa proses IT"}, {"m": "Jun", "c": "Network", "i": "Fiber ISP putus kedua kalinya", "h": 1, "p": "IT Support Lead", "s": "Closed", "rc": "Akar masalah sama: link tunggal"}, {"m": "Jun", "c": "Application", "i": "Easy accounting salah tampil aktivasi Trial akses", "h": 1.3, "p": "IT Support", "s": "Closed", "rc": "Parameter periode default salah"}, {"m": "Jul", "c": "Backup", "i": "Restore test gagal sebagian", "h": 1.5, "p": "IT Support", "s": "Closed", "rc": "Job incremental terputus"}, {"m": "Jul", "c": "Endpoint", "i": "Ransomware terdeteksi & terblokir di Hardisk Backup Eksternal", "h": 0.8, "p": "IT Support Lead", "s": "Closed", "rc": "User unduh file dari USB pribadi"}, {"m": "Ags", "c": "Server", "i": "Aplikasi akunting down saat closing", "h": 3, "p": "IT Support Lead", "s": "Closed", "rc": "Auto-update OS + reboot tak terjadwal"}, {"m": "Ags", "c": "Backup", "i": "Backup DB besar gagal (window kurang)", "h": 1.8, "p": "IT Support", "s": "Closed", "rc": "Volume data naik, window tetap"}, {"m": "Ags", "c": "Network", "i": "Wi-Fi  HO", "h": 1, "p": "IT Support", "s": "Closed", "rc": "AP overload & interferensi channel"}, {"m": "Sep", "c": "Network", "i": "Wi-Fi  WS (28-30 september 2026)", "h": 72, "p": "IT Support", "s": "Closed", "rc": "Fiber Networking broken"}]},M=D.M,SH=['Uptime','Network','Ticket SLA','Data Avail.','Dashboard KPI','Backup','Cybersecurity','Project DB','Accounting','Doc Mgmt','IT Downtime'];
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches,FONT="'Plus Jakarta Sans',system-ui,sans-serif";
+const K=D.kpi.map((k,i)=>{const lo=k.u==='Jam',ok=k.v.map(v=>lo?v<=k.t:v>=k.t),n=ok.filter(Boolean).length,avg=k.v.reduce((a,b)=>a+b,0)/k.v.length,r=k.v.map(v=>lo?k.t/v:v/k.t);
+return{...k,nm:k.n,i,s:SH[i],lo,ok,n,avg,ach:lo?k.t/avg:avg/k.t,r,st:(M.length-n)>=6?'Kritis':'Perlu Perbaikan'}});
+let fil='Semua',sel=K.findIndex(k=>k.n===0&&k.avg<.5)>=0?7:0,C={},RKS=[];
+const $=id=>document.getElementById(id),cs=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const col=k=>k.st==='Kritis'?cs('--bad'):cs('--warn'),pc=v=>(v*100).toFixed(1)+'%',fv=(k,v)=>k.lo?v.toFixed(1)+' jam':pc(v);
+const vis=()=>K.filter(k=>fil==='Semua'||k.st===fil);
+const tot=K.reduce((a,k)=>a+k.n,0),kr=K.filter(k=>k.st==='Kritis').length,NM=M.length,NT=K.length*NM;
+const cat=c=>/Network/.test(c)?'Network':/Server/.test(c)?'Server':/Backup/.test(c)?'Backup':/Endpoint|Security/.test(c)?'Endpoint & Security':/Appl/.test(c)?'Aplikasi':'Storage & lainnya';
+const gr=()=>cs('--line');
+
+/* ================= MESIN ANIMASI ================= */
+const ease={out:t=>1-Math.pow(1-t,3),back:t=>{const c=1.70158;return 1+(c+1)*Math.pow(t-1,3)+c*Math.pow(t-1,2)},elastic:t=>t<=0?0:t>=1?1:Math.pow(2,-9*t)*Math.sin((t*9-.75)*2.0943951)+1};
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const prog=(c,delay,dur)=>RM?1:cl((performance.now()-(c.$t0||0)-delay)/dur);
+const keep=c=>{if(!c.$raf){c.$raf=requestAnimationFrame(()=>{c.$raf=0;if(c.ctx)c.draw()})}};
+const safe=f=>function(){try{return f.apply(this,arguments)}catch(e){if(globalThis.__DBG)throw e}};
+const TAU=Math.PI*2;
+const WAVE={id:'wave',
+beforeDatasetsDraw:safe(c=>{c.$ws=[];if(RM||!c.$bar)return;const n=performance.now()-c.$t0-2300;if(n<0)return;const amp=.05*ease.out(cl(n/1500)),t=performance.now()/600,hz=c.options.indexAxis==='y',ax=hz?c.scales.x:c.scales.y,z=ax.getPixelForValue(0),k=hz?'x':'y';c.data.datasets.forEach((d,di)=>{const m=c.getDatasetMeta(di);if(m.type!=='bar'||m.hidden)return;m.data.forEach((e,i)=>{const v=e[k],b=e.base;if(!isFinite(v)||!isFinite(b))return;c.$ws.push([e,k,v,b]);const f=1+amp*Math.sin(t+i*.75+di*.5);e[k]=z+(v-z)*f;e.base=z+(b-z)*f})})}),
+afterDatasetsDraw:safe(c=>{(c.$ws||[]).forEach(o=>{o[0][o[1]]=o[2];o[0].base=o[3]});c.$ws=[]})};
+const RUN={id:'runner',defaults:{on:false},
+afterDatasetsDraw:safe((c,a,o)=>{if(!o.on||RM)return;const P=c.getDatasetMeta(0).data;if(!P||P.length<2)return;const t0=c.$t0+1700,now=performance.now();if(now<t0)return;const n=P.length-1,SEG=950,DW=420,GAP=1100,L=n*(SEG+DW),cyc=L+GAP,x=c.ctx;
+const at=tm=>{const t=((tm%cyc)+cyc)%cyc,fi=t<300?t/300:1;if(t>=L){const e=P[n];return{x:e.x,y:e.y,d:0,al:1-(t-L)/GAP}}const s=Math.floor(t/(SEG+DW)),r=t-s*(SEG+DW),p0=P[s],p1=P[s+1];if(r>=SEG)return{x:p1.x,y:p1.y,d:(r-SEG)/DW,al:fi};const u=r/SEG,w=u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2,v=1-w,ax=p0.cp2x==null?p0.x:p0.cp2x,ay=p0.cp2y==null?p0.y:p0.cp2y,bx=p1.cp1x==null?p1.x:p1.cp1x,by=p1.cp1y==null?p1.y:p1.cp1y;return{x:v*v*v*p0.x+3*v*v*w*ax+3*v*w*w*bx+w*w*w*p1.x,y:v*v*v*p0.y+3*v*v*w*ay+3*v*w*w*by+w*w*w*p1.y,d:0,al:fi}};
+const tm=now-t0;for(let k=7;k>=1;k--){if(tm-k*42<0)continue;const q=at(tm-k*42);x.save();x.globalAlpha=q.al*(1-k/8)*.55;x.fillStyle='#ff4d6d';x.beginPath();x.arc(q.x,q.y,7*(1-k/10),0,TAU);x.fill();x.restore()}
+const q=at(tm);x.save();if(q.d>0){x.strokeStyle='#ff4d6d';x.globalAlpha=q.al*(1-q.d);x.lineWidth=2.5;x.beginPath();x.arc(q.x,q.y,8+q.d*16,0,TAU);x.stroke()}x.globalAlpha=q.al;x.shadowColor='#ff4d6d';x.shadowBlur=16;x.fillStyle='#ff4d6d';x.strokeStyle='#fff';x.lineWidth=3;x.beginPath();x.arc(q.x,q.y,8,0,TAU);x.fill();x.stroke();x.restore()})};
+const SWEEP={id:'sweep',
+beforeDatasetsDraw:safe(c=>{c.$rs=[];if(RM||c.config.type!=='radar')return;const r=c.scales.r,n=performance.now()-c.$t0;if(!r||n<300)return;const cx=r.xCenter,cy=r.yCenter,R=r.drawingArea,x=c.ctx,th=(n/3600*TAU)%TAU;x.save();x.globalAlpha=ease.out(cl(n/1200));if(x.createConicGradient){const g=x.createConicGradient(th-TAU*.2,cx,cy);g.addColorStop(0,'rgba(18,181,203,0)');g.addColorStop(.2,'rgba(18,181,203,.42)');g.addColorStop(.2001,'rgba(18,181,203,0)');g.addColorStop(1,'rgba(18,181,203,0)');x.fillStyle=g;x.beginPath();x.arc(cx,cy,R,0,TAU);x.fill()}x.strokeStyle='#12b5cb';x.lineWidth=2;x.shadowColor='#12b5cb';x.shadowBlur=10;x.beginPath();x.moveTo(cx,cy);x.lineTo(cx+Math.cos(th)*R,cy+Math.sin(th)*R);x.stroke();x.restore();
+const amp=.035*ease.out(cl((n-2000)/1500));if(amp<=0)return;const t=performance.now()/700;c.getDatasetMeta(0).data.forEach((e,i)=>{const f=1+amp*Math.sin(t+i*.9);c.$rs.push([e,e.x,e.y]);e.x=cx+(e.x-cx)*f;e.y=cy+(e.y-cy)*f})}),
+afterDatasetsDraw:safe(c=>{(c.$rs||[]).forEach(o=>{o[0].x=o[1];o[0].y=o[2]});c.$rs=[]})};
+const ORBIT={id:'orbit',defaults:{on:false},
+beforeDatasetsDraw:safe((c,a,o)=>{c.$os=[];if(!o.on||RM)return;const n=performance.now()-c.$t0-2100;if(n<0)return;const amp=.04*ease.out(cl(n/1200)),t=performance.now()/700;c.getDatasetMeta(0).data.forEach((e,i)=>{const R=e.outerRadius;if(!isFinite(R))return;c.$os.push([e,R]);e.outerRadius=R*(1+amp*Math.sin(t-i*1.1))})}),
+afterDatasetsDraw:safe((c,a,o)=>{(c.$os||[]).forEach(q=>{q[0].outerRadius=q[1]});c.$os=[];if(!o.on||RM)return;const n=performance.now()-c.$t0-1800;if(n<0)return;const e=c.getDatasetMeta(0).data[0];if(!e)return;const g=e.getProps(['x','y','outerRadius'],true),R=g.outerRadius+9,x=c.ctx,now=performance.now(),al=ease.out(cl(n/800));
+x.save();x.globalAlpha=al*.35;x.strokeStyle=c.$x.donut?c.$x.donut.mut:'#888';x.setLineDash([3,7]);x.lineDashOffset=-now/60;x.lineWidth=1.5;x.beginPath();x.arc(g.x,g.y,R,0,TAU);x.stroke();x.setLineDash([]);
+for(let j=0;j<2;j++){const a0=now/650+j*Math.PI;for(let k=0;k<12;k++){const an=a0-k*.075;x.globalAlpha=al*(1-k/12);x.fillStyle='hsl('+((((an*57.3)%360)+360)%360)+',95%,62%)';x.beginPath();x.arc(g.x+Math.cos(an)*R,g.y+Math.sin(an)*R,4.2*(1-k/16),0,TAU);x.fill()}}x.restore()})};
+const FLOW={id:'flowfill',beforeDatasetsDraw:safe(c=>{if(RM||!c.$x.flow)return;const a=c.chartArea,arc=c.getDatasetMeta(0).data[0];if(!a||!arc||!arc.options)return;const w=a.right-a.left,ph=(performance.now()/3500)%1,g=c.ctx.createLinearGradient(a.left-w*ph,0,a.left-w*ph+2*w,0);[...RB,...RB,RB[0]].forEach((q,i)=>g.addColorStop(i/12,q));arc.options.backgroundColor=g})};
+const PL=[
+{id:'life',beforeInit(c){c.$t0=performance.now();const r=c.config&&(c.config._config||c.config.config)||{};c.$x=r.$x||{};c.$bar=r.type==='bar'||((r.data&&r.data.datasets)||[]).some(d=>d.type==='bar')}},
+/* garis "tergambar" dari kiri ke kanan */
+{id:'reveal',defaults:{on:false,delay:0,dur:1500},
+ beforeDatasetDraw:safe((c,a,o)=>{if(!o.on||a.meta.type!=='line')return;const p=prog(c,o.delay,o.dur);if(p>=1)return;const ca=c.chartArea,x=c.ctx;x.save();x.beginPath();x.rect(ca.left-14,ca.top-14,(ca.right-ca.left+28)*ease.out(p),ca.bottom-ca.top+28);x.clip();a.$cl=1;keep(c)}),
+ afterDatasetDraw:safe((c,a)=>{if(a.$cl){c.ctx.restore();a.$cl=0}})},
+/* cahaya neon pada garis */
+{id:'glow',defaults:{on:false,blur:12},
+ beforeDatasetDraw:safe((c,a,o)=>{if(!o.on)return;const t=a.meta.type;if(t!=='line'&&t!=='radar')return;const ds=c.data.datasets[a.index];if(!ds.borderColor||ds.borderDash)return;const x=c.ctx;const gc=ds.glowColor||(typeof ds.borderColor==='string'?ds.borderColor+'bb':null);if(!gc)return;x.save();x.shadowColor=gc;x.shadowBlur=Math.min(o.blur,8);a.$gl=1}),
+ afterDatasetDraw:safe((c,a)=>{if(a.$gl){c.ctx.restore();a.$gl=0}})},
+/* titik / gelembung muncul satu per satu dengan efek membal */
+{id:'pop',defaults:{on:false,delay:600,step:90,dur:800,ease:'back'},
+ beforeDatasetDraw:safe((c,a,o)=>{if(!o.on||RM)return;const t=a.meta.type;if(t!=='line'&&t!=='bubble'&&t!=='radar')return;const f=ease[o.ease]||ease.back,els=a.meta.data,base=els.map(e=>e.options&&e.options.radius||0);let busy=false;a.$pr=[];els.forEach((e,i)=>{const x=(performance.now()-c.$t0-o.delay-i*o.step)/o.dur;if(x>=1||!e.options)return;busy=true;a.$pr.push([e,base[i]]);e.options.radius=Math.max(0,base[i]*f(cl(x)))});if(busy)keep(c)}),
+ afterDatasetDraw:safe((c,a)=>{if(a.$pr){a.$pr.forEach(x=>{x[0].options.radius=x[1]});a.$pr=null}})},
+/* label nilai di ujung batang */
+{id:'vlabel',defaults:{on:false,delay:250,h:false},
+ afterDatasetsDraw:safe((c,a,o)=>{if(!o.on)return;const f=c.$x.vlabel;if(!f)return;const x=c.ctx,p=ease.out(prog(c,o.delay,600)),m=c.getDatasetMeta(f.ds||0),ds=c.data.datasets[f.ds||0];if(!m||m.hidden)return;x.save();x.globalAlpha=p;x.fillStyle=f.color;x.font='700 12px '+FONT;x.textBaseline='middle';m.data.forEach((e,i)=>{const t=f.fmt(ds.data[i],i);if(o.h){x.textAlign='left';x.fillText(t,e.x+8,e.y)}else{x.textAlign='center';x.fillText(t,e.x,e.y-12)}});x.restore();if(p<1)keep(c)})},
+/* garis acuan vertikal (target 100%) */
+{id:'refx',defaults:{on:false},
+ afterDatasetsDraw:safe((c,a,o)=>{if(!o.on)return;const r=c.$x.refx;if(!r)return;const s=c.scales.x,ca=c.chartArea,px=s.getPixelForValue(r.v),x=c.ctx,p=ease.out(prog(c,400,700));x.save();x.globalAlpha=p;x.strokeStyle=r.color;x.setLineDash([6,5]);x.lineWidth=1.5;x.beginPath();x.moveTo(px,ca.bottom-p*(ca.bottom-ca.top));x.lineTo(px,ca.bottom);x.stroke();x.setLineDash([]);x.fillStyle=r.color;x.font='700 11px '+FONT;x.textAlign='right';x.textBaseline='bottom';x.fillText(r.label,px-5,ca.bottom-4);x.restore();if(p<1)keep(c)})},
+/* gauge: skala + penanda yang bergerak mengikuti ujung busur */
+{id:'gauge',defaults:{on:false},
+ afterDatasetsDraw:safe((c,a,o)=>{if(!o.on)return;const arc=c.getDatasetMeta(0).data[0];if(!arc)return;const g=arc.getProps(['x','y','outerRadius','innerRadius','endAngle','startAngle'],true),x=c.ctx,k=c.$x.gauge||{},p=ease.out(prog(c,0,1200));
+  x.save();x.globalAlpha=p;x.strokeStyle=k.mut;x.fillStyle=k.mut;x.lineWidth=1.5;x.font='600 10px '+FONT;x.textAlign='center';x.textBaseline='middle';
+  for(let i=0;i<=10;i++){const ang=Math.PI+Math.PI*i/10,r0=g.outerRadius+4,r1=g.outerRadius+(i%5===0?12:8);x.beginPath();x.moveTo(g.x+Math.cos(ang)*r0,g.y+Math.sin(ang)*r0);x.lineTo(g.x+Math.cos(ang)*r1,g.y+Math.sin(ang)*r1);x.stroke();if(i%5===0){const rl=g.outerRadius+25;x.fillText(i*10+'',g.x+Math.cos(ang)*rl,g.y+Math.sin(ang)*rl)}}
+  x.restore();
+  const rm=(g.outerRadius+g.innerRadius)/2,kr=(g.outerRadius-g.innerRadius)/2+4,kx=g.x+Math.cos(g.endAngle)*rm,ky=g.y+Math.sin(g.endAngle)*rm;
+  const kcol='hsl('+((performance.now()/14)%360)+',90%,60%)';x.save();x.shadowColor=kcol;x.shadowBlur=14;x.fillStyle='#fff';x.beginPath();x.arc(kx,ky,kr,0,TAU);x.fill();x.shadowBlur=0;x.lineWidth=4;x.strokeStyle=kcol;x.stroke();
+  if(!RM){const t=(performance.now()%1600)/1600;x.globalAlpha=(1-t)*.5;x.lineWidth=2;x.beginPath();x.arc(kx,ky,kr+t*14,0,TAU);x.stroke()}
+  x.restore();
+  if(!RM&&p>=1){const sa=g.startAngle,sp=g.endAngle-sa,now=performance.now();for(let i=0;i<5;i++){const u=((now/2600)+i/5)%1,an=sa+sp*u;x.save();x.globalAlpha=Math.sin(Math.PI*u)*.95;x.fillStyle='#fff';x.shadowColor='#fff';x.shadowBlur=10;x.beginPath();x.arc(g.x+Math.cos(an)*rm,g.y+Math.sin(an)*rm,3.2,0,TAU);x.fill();x.restore()}}
+  if(p<1)keep(c)})},
+/* teks di tengah donat: total, atau irisan yang disorot */
+{id:'donutCenter',defaults:{on:false},
+ afterDatasetsDraw:safe((c,a,o)=>{if(!o.on)return;const arc=c.getDatasetMeta(0).data[0];if(!arc)return;const g=arc.getProps(['x','y','innerRadius'],true),k=c.$x.donut||{},ds=c.data.datasets[0],x=c.ctx,act=c.getActiveElements()[0],p=prog(c,300,1400);let big,small;
+  if(act){big=Number(ds.data[act.index]).toFixed(1);small=c.data.labels[act.index]}else{const t=ds.data.reduce((s,v,i)=>s+(c.getDataVisibility(i)?v:0),0);big=(t*ease.out(p)).toFixed(1);small='total jam downtime'}
+  x.save();x.textAlign='center';x.textBaseline='alphabetic';x.fillStyle=k.ink;x.font='800 '+Math.max(16,Math.round(g.innerRadius*.42))+'px '+FONT;x.fillText(big,g.x,g.y+4);x.fillStyle=k.mut;x.font='600 '+Math.max(10,Math.round(g.innerRadius*.17))+'px '+FONT;x.fillText(small,g.x,g.y+4+Math.round(g.innerRadius*.3));x.restore();if(!act&&p<1)keep(c)})},
+/* cincin denyut pada titik/batang penting */
+{id:'halo',defaults:{on:false},
+ afterDatasetsDraw:safe((c,a,o)=>{if(!o.on||RM)return;const f=c.$x.halo;if(!f||performance.now()-c.$t0<1500)return;const t=(performance.now()%1800)/1800,x=c.ctx;f(c).forEach(h=>{const e=c.getDatasetMeta(h.ds).data[h.i];if(!e)return;const r=h.r||(e.options&&e.options.radius)||6;x.save();x.strokeStyle=h.color;x.globalAlpha=(1-t)*.7;x.lineWidth=2.5;x.beginPath();x.arc(e.x,e.y,r+2+t*18,0,TAU);x.stroke();x.restore()})})},
+/* nama KPI di samping gelembung */
+{id:'bubbleLabels',defaults:{on:false},
+ afterDatasetsDraw:safe((c,a,o)=>{if(!o.on)return;const k=c.$x.bl||{},p=ease.out(prog(c,900,500)),x=c.ctx;x.save();x.globalAlpha=p;x.fillStyle=k.ink;x.font='700 11px '+FONT;x.textBaseline='middle';x.textAlign='left';c.data.datasets.forEach((ds,di)=>{const m=c.getDatasetMeta(di);if(m.hidden)return;m.data.forEach((e,i)=>{const d=ds.data[i];x.fillText(d.n,e.x+((e.options&&e.options.radius)||6)+5,e.y)})});x.restore();if(p<1)keep(c)})},
+/* total di atas batang bertumpuk */
+{id:'stackTotal',defaults:{on:false},
+ afterDatasetsDraw:safe((c,a,o)=>{if(!o.on)return;const k=c.$x.st||{},p=ease.out(prog(c,900,600)),x=c.ctx,n=c.data.labels.length;x.save();x.globalAlpha=p;x.fillStyle=k.ink;x.font='800 12px '+FONT;x.textAlign='center';for(let i=0;i<n;i++){let s=0,top=1e9,ex=null;c.data.datasets.forEach((ds,di)=>{if(!c.isDatasetVisible(di))return;const v=ds.data[i]||0;s+=v;const e=c.getDatasetMeta(di).data[i];if(v>0&&e){top=Math.min(top,e.y);ex=e.x}});if(s>0&&ex!==null)x.fillText(s.toFixed(1),ex,top-8)}x.restore();if(p<1)keep(c)})}
+,WAVE,RUN,SWEEP,ORBIT,FLOW];
+if(typeof Chart.register==='function')Chart.register(...PL);
+const PULSE=new Set();let pulsing=false;
+const IOV=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(es=>es.forEach(e=>{e.target.$v=e.isIntersecting})):null;
+function pulseLoop(){if(!document.hidden){const n=performance.now();PULSE.forEach(c=>{if(!c.ctx){PULSE.delete(c);return}if(c.canvas.$v!==false&&n-c.$t0>1900)c.draw()})}requestAnimationFrame(pulseLoop)}
+/* grafik dibuat saat masuk layar, supaya animasinya terlihat */
+const IO=(!RM&&typeof IntersectionObserver!=='undefined')?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){IO.unobserve(e.target);build(e.target.id)}}),{threshold:.15}):null;
+const CF={};
+function setup(){Chart.defaults.devicePixelRatio=Math.min(window.devicePixelRatio||1,2);Chart.defaults.color=cs('--mut');Chart.defaults.font.family=FONT;Chart.defaults.font.weight=500;const T=Chart.defaults.plugins.tooltip;Object.assign(T,{backgroundColor:'#0b1630f2',titleColor:'#fff',bodyColor:'#dbe6ff',borderColor:'#ffffff26',borderWidth:1,padding:11,cornerRadius:10,boxPadding:5,titleFont:{weight:'800'}});const L=Chart.defaults.plugins.legend.labels;L.usePointStyle=true;L.boxWidth=8;L.boxHeight=8}
+function build(id){const cfg=CF[id];if(!cfg||!$(id))return;if(C[id]){PULSE.delete(C[id]);C[id].destroy()}setup();C[id]=new Chart($(id),cfg);if(((cfg.$x&&cfg.$x.pulse)||C[id].$bar)&&!RM){PULSE.add(C[id]);if(IOV)IOV.observe($(id));if(!pulsing){pulsing=true;requestAnimationFrame(pulseLoop)}}}
+function mk(id,cfg){const el=$(id);if(IO)IO.unobserve(el);if(C[id]){PULSE.delete(C[id]);C[id].destroy();C[id]=null}CF[id]=cfg;const r=el.getBoundingClientRect();if(!IO||(r.top<innerHeight*.92&&r.bottom>0))build(id);else IO.observe(el)}
+/* helper warna & animasi */
+const gB=(hex,h)=>c=>{const ch=c.chart,a=ch.chartArea;if(!a)return hex;ch.$gc=ch.$gc||{};const key=hex+(h?'h':'v')+a.left+'_'+a.right+'_'+a.top+'_'+a.bottom;if(ch.$gc[key])return ch.$gc[key];const g=h?ch.ctx.createLinearGradient(a.left,0,a.right,0):ch.ctx.createLinearGradient(0,a.bottom,0,a.top);g.addColorStop(0,hex+'77');g.addColorStop(1,hex);return ch.$gc[key]=g};
+const PAL=['#ff5c8a','#ffb020','#2fd3a3','#5b8dff','#a066ff','#12b5cb','#ff7a45','#7ed957','#f15bb5','#00bbf9','#e6c600'],kc=k=>PAL[k.i%PAL.length];
+const RB=['#5b8dff','#12b5cb','#2fd3a3','#ffb020','#ff5c8a','#a066ff'];
+const rbG=c=>{const ch=c.chart,a=ch.chartArea;if(!a)return RB[0];ch.$rb=ch.$rb||{};const k=a.left+'_'+a.right;if(ch.$rb[k])return ch.$rb[k];const g=ch.ctx.createLinearGradient(a.left,0,a.right,0);RB.forEach((q,n)=>g.addColorStop(n/(RB.length-1),q));return ch.$rb[k]=g};
+const vG=hex=>c=>{const a=c.chart.chartArea;if(!a)return hex+'22';const g=c.chart.ctx.createLinearGradient(0,a.top,0,a.bottom);g.addColorStop(0,hex+'66');g.addColorStop(1,hex+'05');return g};
+const A=o=>{if(RM)return false;o=o||{};let done=false;return{duration:o.dur||1200,easing:o.ease||'easeOutQuart',delay:c=>(done||c.type!=='data'||c.mode!=='default')?0:(o.base||0)+c.dataIndex*(o.ms==null?70:o.ms)+c.datasetIndex*(o.ds==null?110:o.ds),onComplete:()=>{done=true}}};
+const sc=(extra)=>Object.assign({grid:{color:gr(),drawTicks:false},border:{display:false},ticks:{padding:8}},extra||{});
+const noGrid=(extra)=>Object.assign({grid:{display:false},border:{display:false}},extra||{});
+function count(e,to,suf,dur){const t0=performance.now(),f=t=>{const q=RM?1:Math.min(1,(t-t0)/(dur||1400));e.textContent=Math.round(to*ease.out(q))+suf;q<1&&requestAnimationFrame(f)};requestAnimationFrame(f)}
+
+/* ================= KOMPONEN ================= */
+function cards(){const it=[['Total KPI',K.length,'KPI operasional IT',cs('--acc')],['Overall achievement',tot/NT*100,'% bulan-KPI tercapai',cs('--acc2')],['KPI kritis',kr,'wajib dibahas raker',cs('--bad')],['Perlu perbaikan',K.length-kr,'on-track, perlu dorongan',cs('--warn')],['Downtime insiden',D.inc.reduce((a,x)=>a+x.h,0),'jam, dari '+D.inc.length+' insiden','#a066ff'],['Tercapai September',K.filter(k=>k.ok[NM-1]).length,'dari 11 KPI (Agustus: '+K.filter(k=>k.ok[NM-2]).length+')',cs('--ok')]];
+$('kp').innerHTML=it.map((x,i)=>`<div class="k" style="--c:${x[3]};--n:${i}"><span>${x[0]}</span><b data-v="${x[1]}" data-p="${i===1?1:0}">0</b><span>${x[2]}</span></div>`).join('');
+document.querySelectorAll('.k b').forEach(e=>{const v=+e.dataset.v,p=e.dataset.p==='1',d=v%1&&!p?1:0,t0=performance.now(),f=t=>{const q=RM?1:Math.min(1,(t-t0)/1300);e.textContent=(v*ease.out(q)).toFixed(p?0:d)+(p?'%':'');q<1&&requestAnimationFrame(f)};requestAnimationFrame(f)})}
+function filt(){$('fl').innerHTML='<span style="color:var(--mut)">Filter status:</span>'+['Semua','Kritis','Perlu Perbaikan'].map(f=>`<button class="chip" aria-pressed="${f===fil}" data-f="${f}">${f}</button>`).join('');
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{fil=b.dataset.f;draw()})}
+/* ganti KPI terpilih tanpa menggambar ulang semua grafik */
+function pick(i){sel=i;detail();document.querySelectorAll('#hm tr').forEach(tr=>{const n=tr.querySelector('td.n');if(n)tr.classList.toggle('sel',+n.dataset.i===sel)});document.querySelectorAll('#sc tr.r').forEach(tr=>tr.classList.toggle('sel',+tr.dataset.i===sel));
+if(C.rk&&RKS.length){C.rk.data.datasets[0].borderColor=RKS.map(k=>k.i===sel?cs('--ink'):'transparent');C.rk.update('none')}}
+
+function draw(){filt();const V=vis(),ink=cs('--ink'),mut=cs('--mut'),bad=cs('--bad'),ok=cs('--ok'),warn=cs('--warn'),acc=cs('--acc'),acc2=cs('--acc2'),card=cs('--card');
+count($('gv'),Math.round(tot/NT*100),'%',1700);$('gv').style.color=acc;
+/* 1. gauge */
+const gGrad=c=>{const a=c.chart.chartArea;if(!a)return acc;const g=c.chart.ctx.createLinearGradient(a.left,0,a.right,0);g.addColorStop(0,bad);g.addColorStop(.5,warn);g.addColorStop(1,ok);return g};
+mk('ga',{$x:{gauge:{mut,col:acc},pulse:true,flow:true},type:'doughnut',data:{labels:['Tercapai','Belum'],datasets:[{data:[tot,NT-tot],backgroundColor:c=>c.dataIndex===0?gGrad(c):gr(),borderWidth:0,borderRadius:10}]},options:{rotation:-90,circumference:180,cutout:'74%',maintainAspectRatio:false,layout:{padding:{top:24,left:28,right:28}},animation:RM?false:{duration:1700,easing:'easeOutQuart'},plugins:{legend:{display:false},gauge:{on:true}}}});
+const op=D.inc.filter(x=>x.s!=='Closed');$('op').innerHTML='<b>Isu belum closed ('+op.length+')</b>'+(op.length?op.map(x=>`<div>${x.m} · ${x.i} <em>(${x.s})</em></div>`).join(''):'<div>Semua insiden Jan–Sep berstatus Closed</div>');
+/* 2. achievement per KPI (bar horizontal) */
+const S=[...V].sort((a,b)=>a.ach-b.ach);RKS=S;
+mk('rk',{$x:{vlabel:{ds:0,color:ink,fmt:v=>v+'%'},refx:{v:100,label:'Target 100%',color:ok}},type:'bar',data:{labels:S.map(k=>k.s),datasets:[{data:S.map(k=>+(k.ach*100).toFixed(1)),backgroundColor:c=>gB(kc(S[c.dataIndex]),true)(c),borderRadius:10,borderSkipped:false,borderColor:S.map(k=>k.i===sel?ink:'transparent'),borderWidth:2,barPercentage:.78}]},
+options:{indexAxis:'y',maintainAspectRatio:false,animation:A({dur:1100,ms:90,ds:0}),layout:{padding:{right:50}},onClick:(e,a)=>{if(a[0])pick(RKS[a[0].index].i)},onHover:(e,a)=>{if(e.native&&e.native.target)e.native.target.style.cursor=a.length?'pointer':'default'},
+plugins:{legend:{display:false},vlabel:{on:true,h:true,delay:0},refx:{on:true},tooltip:{callbacks:{label:c=>'Achievement '+c.raw+'% · '+S[c.dataIndex].st}}},scales:{x:sc({min:0,max:110,ticks:{padding:8,callback:v=>v+'%'}}),y:noGrid()}}});
+detail();tabs();more();
+/* 3. heatmap */
+let h='<table><tr><th></th>'+M.map(m=>`<th>${m}</th>`).join('')+'</tr>';
+V.forEach((k,ri)=>{h+=`<tr class="${k.i===sel?'sel':''}"><td class="n" data-i="${k.i}">${k.s}</td>`+k.r.map((r,j)=>{const q=Math.max(0,Math.min(1,(Math.min(r,1)-.85)/.15));const bg=k.i===7?(r>.5?cs('--warn'):cs('--bad')):`color-mix(in srgb,${cs('--ok')} ${Math.round(q*100)}%,${cs('--bad')})`;return`<td class="x" style="background:${bg};--d:${ri*45+j*55}ms;--w:${-(ri+j)*480}ms" title="${k.s} ${M[j]}: ${fv(k,k.v[j])} (target ${fv(k,k.t)})">${k.ok[j]?'OK':'X'}</td>`}).join('')+'</tr>'});
+$('hm').innerHTML=h+'</table>';document.querySelectorAll('td.n').forEach(e=>e.onclick=()=>{pick(+e.dataset.i);$('dt').scrollIntoView({behavior:'smooth',block:'center'})});
+/* 4. radar */
+mk('rd',{$x:{pulse:true},type:'radar',data:{labels:V.map(k=>k.s),datasets:[{label:'Achievement %',data:V.map(k=>+(k.ach*100).toFixed(1)),borderColor:'#a066ff',borderWidth:3,backgroundColor:c=>{const a=c.chart.chartArea;if(!a)return acc+'33';const cx=(a.left+a.right)/2,cy=(a.top+a.bottom)/2,g=c.chart.ctx.createRadialGradient(cx,cy,0,cx,cy,(a.right-a.left)/2);g.addColorStop(0,'#12b5cb22');g.addColorStop(1,'#a066ffaa');return g},pointBackgroundColor:V.map(kc),pointBorderColor:'#fff',pointBorderWidth:1.5,pointRadius:5,pointHoverRadius:8},{label:'Target',data:V.map(()=>100),borderColor:ok,borderDash:[5,4],pointRadius:0,fill:false}]},
+options:{maintainAspectRatio:false,animation:A({dur:1600,ease:'easeOutBack',ms:0,ds:0}),scales:{r:{min:0,max:100,grid:{color:gr()},angleLines:{color:gr()},ticks:{backdropColor:'transparent',stepSize:25},pointLabels:{font:{weight:'600',size:11}}}},plugins:{glow:{on:true,blur:12},pop:{on:true,delay:800,step:80}}}});
+/* 5. pareto */
+const P=[...V].sort((a,b)=>(NM-a.n)-(NM-b.n)).reverse();let cum=0;const T=P.reduce((a,k)=>a+NM-k.n,0);
+mk('pa',{$x:{vlabel:{ds:0,color:ink,fmt:v=>v}},data:{labels:P.map(k=>k.s),datasets:[{type:'bar',label:'Bulan gagal',data:P.map(k=>NM-k.n),backgroundColor:c=>gB(kc(P[c.dataIndex]),false)(c),borderRadius:8,borderSkipped:false,yAxisID:'y'},{type:'line',label:'Kumulatif %',data:P.map(k=>+((cum+=NM-k.n)/T*100).toFixed(1)),borderColor:'#ff7a45',borderWidth:3,tension:.35,pointRadius:5,pointBackgroundColor:'#ff7a45',pointBorderColor:'#fff',pointBorderWidth:2,yAxisID:'y1'}]},
+options:{maintainAspectRatio:false,animation:A({dur:1100,ms:80,ds:0}),scales:{y:sc({max:NM+1}),y1:{position:'right',min:0,max:100,grid:{display:false},border:{display:false},ticks:{callback:v=>v+'%'}},x:noGrid({ticks:{maxRotation:60}})},plugins:{reveal:{on:true,delay:800,dur:1400},glow:{on:true},pop:{on:true,delay:900,step:90},vlabel:{on:true,delay:500}}}});
+/* 6. peta risiko (bubble) */
+const pcl={P1:'#ff4d6d',P2:'#ffb020',P3:'#5b8dff',P4:'#2fd3a3'};
+mk('pb',{$x:{bl:{ink},halo:c=>c.getDatasetMeta(0).data.map((e,i)=>({ds:0,i,color:bad,r:e.options&&e.options.radius})),pulse:true},type:'bubble',data:{datasets:['P1','P2','P3','P4'].map(c=>({label:c,backgroundColor:pcl[c]+'aa',borderColor:pcl[c],borderWidth:2,hoverBorderWidth:3,data:D.pri.filter(p=>p.c===c).map(p=>({x:p.f*100,y:p.g*100,r:6+p.s/5,n:p.k,s:p.s,rec:p.rec}))}))},
+options:{maintainAspectRatio:false,animation:A({dur:1200,ms:0,ds:0}),layout:{padding:{right:30,top:10}},scales:{x:sc({title:{display:true,text:'Frekuensi gagal (%)'},min:0,max:110}),y:sc({title:{display:true,text:'Gap rata-rata (%)'}})},plugins:{pop:{on:true,delay:200,step:140,dur:1100,ease:'elastic'},bubbleLabels:{on:true},halo:{on:true},tooltip:{callbacks:{label:c=>c.raw.n+' · skor '+c.raw.s+' · '+c.raw.rec}}}}});
+/* 7. insiden: donat + bar bertumpuk */
+const cg={};D.inc.forEach(x=>{const c=cat(x.c);cg[c]=cg[c]||{n:0,h:0};cg[c].n++;cg[c].h+=x.h});const ck=Object.keys(cg);
+$('is').textContent='Total '+D.inc.reduce((a,x)=>a+x.h,0).toFixed(1)+' jam downtime dari '+D.inc.length+' insiden (informasi pendukung)';
+const pal=['#5b8dff','#12b5cb','#ffb020','#ff5c8a','#2fd3a3','#a066ff'];
+mk('ic',{$x:{donut:{ink,mut},pulse:true},type:'doughnut',data:{labels:ck,datasets:[{data:ck.map(c=>+cg[c].h.toFixed(1)),backgroundColor:pal,borderWidth:3,borderColor:card,borderRadius:10,spacing:2,hoverOffset:16}]},
+options:{maintainAspectRatio:false,cutout:'62%',layout:{padding:14},animation:RM?false:{animateRotate:true,animateScale:true,duration:1700,easing:'easeOutBack'},plugins:{legend:{position:'right'},donutCenter:{on:true},orbit:{on:true},tooltip:{callbacks:{label:c=>c.label+': '+c.raw+' jam, '+cg[c.label].n+' insiden'}}}}});
+mk('im',{$x:{st:{ink}},type:'bar',data:{labels:M,datasets:ck.map((c,i)=>({label:c,backgroundColor:cx=>gB(pal[i],false)(cx),borderRadius:5,borderSkipped:false,data:M.map(m=>+D.inc.filter(x=>x.m===m&&cat(x.c)===c).reduce((a,x)=>a+x.h,0).toFixed(1))}))},
+options:{maintainAspectRatio:false,animation:A({dur:1100,ms:70,ds:90}),plugins:{legend:{display:false},stackTotal:{on:true}},scales:{x:noGrid({stacked:true}),y:sc({stacked:true,title:{display:true,text:'Jam downtime'}})}}});}
+
+function more(){const ink=cs('--ink'),ok=cs('--ok'),bad=cs('--bad'),warn=cs('--warn'),acc=cs('--acc'),acc2=cs('--acc2');
+const P=K.filter(k=>!k.lo&&k.i!==7),dn=K.find(k=>k.lo),am=M.map((m,j)=>P.reduce((a,k)=>a+k.v[j],0)/P.length),at=P.reduce((a,k)=>a+k.t,0)/P.length,L=M.length-1;
+/* availability: garis tergambar + titik berwarna status */
+mk('av',{type:'line',data:{labels:M,datasets:[{label:'Rata-rata availability',data:am.map(v=>+(v*100).toFixed(2)),borderColor:rbG,glowColor:'#a066ffaa',borderWidth:4,backgroundColor:vG('#a066ff'),fill:true,tension:.35,pointRadius:6,pointHoverRadius:9,pointBackgroundColor:am.map(v=>v>=at?ok:bad),pointBorderColor:'#fff',pointBorderWidth:2},{label:'Target rata-rata',data:M.map(()=>+(at*100).toFixed(2)),borderColor:warn,borderDash:[6,5],pointRadius:0}]},
+options:{maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},scales:{y:sc({title:{display:true,text:'%'}}),x:noGrid()},plugins:{reveal:{on:true,dur:1600},glow:{on:true},pop:{on:true,delay:600,step:110}}}});
+/* downtime: batang melonjak, angka muncul, batang merah berdenyut */
+const bars=dn.v.map(v=>v<=dn.t?ok:bad);
+mk('dw',{$x:{vlabel:{ds:0,color:ink,fmt:v=>v.toFixed(1)+(v/dn.t>=5?' ('+Math.round(v/dn.t)+'×)':'')},halo:c=>dn.v[L]>dn.t?[{ds:0,i:L,color:bad,r:5}]:[],pulse:true},data:{labels:M,datasets:[{type:'bar',label:'Downtime (jam)',data:dn.v,backgroundColor:c=>gB(bars[c.dataIndex],false)(c),borderRadius:10,borderSkipped:false},{type:'line',label:'Target (jam)',data:M.map(()=>dn.t),borderColor:warn,borderDash:[6,5],pointRadius:0}]},
+options:{maintainAspectRatio:false,animation:A({dur:1200,ease:'easeOutBack',ms:85,ds:0}),layout:{padding:{top:20}},scales:{y:sc({title:{display:true,text:'Jam'}}),x:noGrid()},plugins:{reveal:{on:true,delay:600,dur:1200},vlabel:{on:true,delay:600},halo:{on:true}}}});
+/* KPI tercapai per bulan */
+const cnt=M.map((m,j)=>K.filter(k=>k.ok[j]).length);
+mk('kb',{$x:{vlabel:{ds:0,color:ink,fmt:v=>v+'/11'},halo:c=>[{ds:0,i:L,color:acc2,r:4}],pulse:true},data:{labels:M,datasets:[{type:'bar',label:'KPI tercapai',data:cnt,backgroundColor:c=>gB(PAL[c.dataIndex%PAL.length],false)(c),borderRadius:10,borderSkipped:false},{type:'line',label:'Tren',data:cnt,borderColor:ink,borderWidth:2,tension:.4,pointRadius:0,pointHoverRadius:0}]},
+options:{maintainAspectRatio:false,animation:A({dur:1100,ease:'easeOutBack',ms:90,ds:0}),layout:{padding:{top:20}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+' dari 11 KPI'}},reveal:{on:true,delay:700,dur:1300},glow:{on:true,blur:8},vlabel:{on:true,delay:500},halo:{on:true}},scales:{y:sc({min:0,max:12,ticks:{padding:8,stepSize:2}}),x:noGrid()}}});}
+var LT=null,LS=null,SC=0;const NUMRE=/-?\d+(?:\.\d+)?/g;
+function live(){clearInterval(LT);clearInterval(LS);const items=[];
+document.querySelectorAll('#sc td,#rc td').forEach(td=>{if(td.querySelector('b,.tag')||(td.closest('#rc')&&td===td.parentNode.firstElementChild))return;td.childNodes.forEach(n=>{if(n.nodeType===3&&/\d/.test(n.nodeValue))items.push({n,td,t:n.nodeValue,one:n.nodeValue.includes(' / '),id:td.closest('#sc')?'sc':'rc'})})});
+document.querySelectorAll('#sc .pb i,#rc .pb i').forEach(i=>{i.dataset.w=i.style.width});
+const set=(o,e)=>{let i=0;o.n.nodeValue=o.t.replace(NUMRE,m=>{const d=(m.split('.')[1]||'').length;return(o.one&&i++>0)?m:(parseFloat(m)*e).toFixed(d)})};
+const roll=(from,dur,id)=>{const t0=performance.now(),f=t=>{const q=Math.min(1,(t-t0)/dur),e=from+(1-from)*ease.out(q);items.forEach(o=>{if(o.id===id)set(o,e)});if(q<1)requestAnimationFrame(f)};requestAnimationFrame(f)};
+if(RM)return;
+items.forEach(o=>set(o,0));
+const io=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){ob.unobserve(e.target);roll(0,1700,e.target.id)}}),{threshold:.2});['sc','rc'].forEach(id=>io.observe($(id)));
+const vis2=id=>{const r=$(id).getBoundingClientRect();return r.bottom>0&&r.top<innerHeight};
+LT=setInterval(()=>{if(document.hidden)return;['sc','rc'].forEach(id=>{if(!vis2(id))return;roll(.82,1000,id);items.forEach(o=>{if(o.id===id){o.td.classList.add('nf');setTimeout(()=>o.td.classList.remove('nf'),1100)}});document.querySelectorAll('#'+id+' .pb i').forEach(i=>{i.style.transition='none';i.style.width=(parseFloat(i.dataset.w)*.8)+'%';i.offsetWidth;i.style.transition='width .9s cubic-bezier(.2,.8,.2,1)';i.style.width=i.dataset.w})})},6000);
+LS=setInterval(()=>{if(document.hidden)return;['sc','rc'].forEach(id=>{const rows=[...document.querySelectorAll(id==='sc'?'#sc tr.r':'#rc tr')].filter(r=>!r.querySelector('th'));rows.forEach((r,i)=>r.classList.toggle('scan',i===SC%rows.length))});SC++},650)}
+function tabs(){tabs0();live()}
+function tabs0(){const V=vis();
+$('sc').innerHTML='<table class="tb"><tr><th>KPI</th><th>Satuan</th><th>Target</th><th>Realisasi</th><th>Gap</th><th>Achievement</th><th>Bulan OK</th><th>Status</th></tr>'+V.map(k=>{const g=k.lo?k.t-k.avg:k.avg-k.t,a=Math.min(k.ach,1)*100;return`<tr class="r ${k.i===sel?'sel':''}" data-i="${k.i}"><td><b><i class="dot" style="background:${kc(k)}"></i>${k.nm}</b></td><td>${k.u}</td><td>${fv(k,k.t)}</td><td>${fv(k,k.avg)}</td><td style="color:${g<0?cs('--bad'):cs('--ok')}">${k.lo?g.toFixed(2)+' jam':(g*100).toFixed(2)+' pp'}</td><td><div class="pb"><i style="width:${a}%;background:linear-gradient(90deg,${kc(k)},${kc(k)}aa)"></i></div>${pc(k.ach)}</td><td>${k.n} / ${NM}</td><td><span class="tag" style="background:${col(k)}">${k.st}</span></td></tr>`}).join('')+'</table>';
+document.querySelectorAll('#sc tr.r').forEach(e=>e.onclick=()=>{pick(+e.dataset.i);$('dt').scrollIntoView({behavior:'smooth',block:'center'})});
+const cl2={P1:cs('--bad'),P2:cs('--warn'),P3:cs('--acc'),P4:cs('--ok')};
+$('rc').innerHTML='<table class="tb"><tr><th>#</th><th>KPI</th><th>Kelas</th><th>Skor</th><th>Frek. gagal</th><th>Gap</th><th>Tren</th><th>Faktor dominan</th><th>Rekomendasi</th></tr>'+D.pri.filter(p=>V.some(k=>k.s===p.k)).map((p,i)=>`<tr><td>${i+1}</td><td><b>${p.k}</b></td><td><span class="tag" style="background:${cl2[p.c]}">${p.c}</span></td><td><div class="pb"><i style="width:${p.s}%;background:${cl2[p.c]}"></i></div>${p.s}</td><td>${Math.round(p.f*100)}%</td><td>${(p.g*100).toFixed(1)}%</td><td>${p.tr}</td><td>${p.fd}</td><td>${p.rec}</td></tr>`).join('')+'</table>'}
+function detail(){const k=K[sel],ink=cs('--ink'),ok=cs('--ok'),bad=cs('--bad'),acc=cs('--acc'),warn=cs('--warn'),L=M.length-1;$('dt').textContent='Detail: '+k.nm;$('ds').textContent='Realisasi bulanan vs target. Klik KPI lain di grafik atau heatmap.';
+const m=k.r.indexOf(Math.min(...k.r));$('di').innerHTML=[['Target',fv(k,k.t)],['Rata-rata',fv(k,k.avg)],['Achievement',pc(k.ach)],['Bulan tercapai',k.n+' / '+NM],['Bulan terlemah',M[m]]].map(x=>`<div><span style="color:var(--mut)">${x[0]}</span><b>${x[1]}</b></div>`).join('')+`<div><span class="tag" style="background:${col(k)}">${k.st}</span></div>`;
+const f=k.lo?1:100;mk('dl',{$x:{halo:c=>[{ds:0,i:L,color:k.ok[L]?ok:bad,r:6}],pulse:true},type:'line',data:{labels:M,datasets:[{label:'Realisasi',data:k.v.map(v=>+(v*f).toFixed(2)),borderColor:rbG,glowColor:'#a066ffaa',borderWidth:4,backgroundColor:vG('#a066ff'),fill:true,tension:.35,pointRadius:6,pointHoverRadius:9,pointBackgroundColor:k.ok.map(o=>o?ok:bad),pointBorderColor:'#fff',pointBorderWidth:2},{label:'Target',data:M.map(()=>k.t*f),borderColor:warn,borderDash:[6,5],pointRadius:0}]},
+options:{maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},scales:{y:sc({title:{display:true,text:k.lo?'Jam':'%'}}),x:noGrid()},plugins:{reveal:{on:true,dur:1500},glow:{on:true},pop:{on:true,delay:700,step:100},halo:{on:true},runner:{on:true}}}});}
+$('th').onclick=()=>{const r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=d?'light':'dark';cards();draw()};
+/* panel muncul saat di-scroll; tombol putar ulang */
+const IO2=(!RM&&typeof IntersectionObserver!=='undefined')?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');IO2.unobserve(e.target)}}),{threshold:.08}):null;
+if(IO2&&document.body)document.body.classList.add('js');
+document.querySelectorAll('.c').forEach(e=>IO2?IO2.observe(e):e.classList.add('in'));
+function replay(){if(IO2)document.querySelectorAll('.c').forEach(e=>{e.classList.remove('in');IO2.observe(e)});window.scrollTo({top:0,behavior:RM?'auto':'smooth'});cards();draw()}
+if($('rp'))$('rp').onclick=replay;
+
+let HC=0;setInterval(()=>{if(document.hidden||RM)return;const t=$('hm');if(!t||!t.firstChild)return;const r=t.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const rows=[...t.querySelectorAll('tr')],nc=rows[0].children.length-1;t.querySelectorAll('.cs').forEach(e=>e.classList.remove('cs'));const j=HC%nc+1;rows.forEach(tr=>{if(tr.children[j])tr.children[j].classList.add('cs')});HC++;const cells=t.querySelectorAll('td.x');for(let k=0;k<1;k++){const c=cells[Math.floor(Math.random()*cells.length)];if(!c)continue;c.classList.add('fl');setTimeout(()=>c.classList.remove('fl'),1700)}},1500);
+cards();draw();
+</script></body></html>
